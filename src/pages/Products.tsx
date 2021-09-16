@@ -9,6 +9,8 @@ export default function Products(props: {
   setFilters: (filters: Filters) => void;
   lastPage: number;
 }) {
+  const [selected, setSelected] = useState<number[]>([]);
+
   const { products } = props;
   const search = (s: string) => {
     props.setFilters({ ...props.filters, s, page: 1 });
@@ -41,6 +43,15 @@ export default function Products(props: {
     );
   }
 
+  const select = (id: number) => {
+    if (selected.some((s) => s === id)) {
+      setSelected(selected.filter((s) => s !== id));
+      return;
+    }
+
+    setSelected([...selected, id]);
+  };
+
   return (
     <>
       <div className='col-md-12 mb-4 input-group'>
@@ -66,8 +77,14 @@ export default function Products(props: {
       <div className='row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3'>
         {products.map((p) => {
           return (
-            <div className='col' key={p.id}>
-              <div className='card shadow-sm'>
+            <div className='col' key={p.id} onClick={() => select(p.id)}>
+              <div
+                className={
+                  selected.some((s) => s === p.id)
+                    ? 'card shadow-sm selected'
+                    : 'card shadow-sm'
+                }
+              >
                 <img src={p.image} alt={p.title} height={200} />
 
                 <div className='card-body'>
