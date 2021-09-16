@@ -23,6 +23,12 @@ const Nav = (props: { user: User }) => {
   if (props?.user?.id) {
     menu = (
       <div className='col-md-3 text-end'>
+        <Link to={'/rankings'} className='btn btn-outline-primary me-2'>
+          Rankings
+        </Link>
+        <Link to={'/stats'} className='btn btn-outline-primary me-2'>
+          Stats
+        </Link>
         <Link to={'/profile'} className='btn btn-outline-primary me-2'>
           {props.user.first_name} {props.user.last_name}
         </Link>
