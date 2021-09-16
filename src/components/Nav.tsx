@@ -1,4 +1,4 @@
-import { Link, Redirect } from 'react-router-dom';
+import { Link, NavLink, Redirect } from 'react-router-dom';
 import React, { Dispatch, useState } from 'react';
 
 import { User } from '../models/user.model';
@@ -22,7 +22,7 @@ const Nav = (props: { user: User }) => {
 
   if (props?.user?.id) {
     menu = (
-      <div className='col-md-3 text-end'>
+      <div className='col-md-6 text-end'>
         <Link to={'/rankings'} className='btn btn-outline-primary me-2'>
           Rankings
         </Link>
@@ -39,7 +39,7 @@ const Nav = (props: { user: User }) => {
     );
   } else {
     menu = (
-      <div className='col-md-3 text-end'>
+      <div className='col-md-6 text-end'>
         <Link to={'/login'} className='btn btn-outline-primary me-2'>
           Login
         </Link>
@@ -55,14 +55,23 @@ const Nav = (props: { user: User }) => {
       <header className='d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom'>
         <ul className='nav col-12 col-md-auto mb-2 justify-content-center mb-md-0'>
           <li>
-            <a href='/' className='nav-link px-2 link-secondary'>
+            <NavLink
+              exact
+              activeClassName='link-dark'
+              className='nav-link px-2 link-secondary'
+              to={'/'}
+            >
               Frontend
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a href='#' className='nav-link px-2 link-dark'>
+            <NavLink
+              to={'/backend'}
+              activeClassName='link-dark'
+              className='nav-link px-2 link-dark'
+            >
               Backend
-            </a>
+            </NavLink>
           </li>
         </ul>
         {menu}
