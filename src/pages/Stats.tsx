@@ -9,6 +9,8 @@ export default function Stats() {
   useEffect(() => {
     (async () => {
       const { data } = await axios.get('stats');
+      console.log(data);
+
       setStats(data);
     })();
   }, []);
@@ -27,10 +29,13 @@ export default function Stats() {
           <tbody>
             {stats.map(
               (s: { code: string; revenue: number }, index: number) => {
-                <tr key={index}>
-                  <td>{`http://localhost:5000/${s.code}`}</td>
-                  <td>{s.revenue}</td>
-                </tr>;
+                return (
+                  <tr key={index}>
+                    <td>{`http://localhost:5000/${s.code}`}</td>
+                    <td>{s.code}</td>
+                    <td>{s.revenue}</td>
+                  </tr>
+                );
               }
             )}
           </tbody>
