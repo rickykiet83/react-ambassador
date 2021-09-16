@@ -9,8 +9,16 @@ export default function Products(props: {
 }) {
   const { products } = props;
   const search = (s: string) => {
-    props.setFilters({ s });
+    props.setFilters({ ...props.filters, s });
   };
+
+  const sort = (sort: string) => {
+    props.setFilters({
+      ...props.filters,
+      sort,
+    });
+  };
+
   return (
     <>
       <div className='col-md-12 mb-4 input-group'>
@@ -20,6 +28,18 @@ export default function Products(props: {
           className='form-control'
           placeholder='Search'
         />
+        <div className='input-group-append'>
+          <select
+            onChange={(e) => sort(e.target.value)}
+            name='sorting'
+            id='sorting'
+            className='form-select'
+          >
+            <option>Select</option>
+            <option value='asc'>Price Ascending</option>
+            <option value='desc'>Price Descending</option>
+          </select>
+        </div>
       </div>
       <div className='row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3'>
         {products.map((p) => {
