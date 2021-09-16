@@ -7,7 +7,7 @@ export interface IUser {
 }
 
 export class User implements IUser {
-  id: number | null = null;
+  id: number | null;
   first_name: string = '';
   last_name: string = '';
   email: string = '';
