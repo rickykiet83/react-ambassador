@@ -26,7 +26,7 @@ const Nav = (props: { user: User }) => {
         <Link to={'/profile'} className='btn btn-outline-primary me-2'>
           {props.user.first_name} {props.user.last_name}
         </Link>
-        <a onClick={logout} href='#' className='btn btn-danger'>
+        <a onClick={logout} className='btn btn-danger'>
           Logout
         </a>
       </div>
@@ -49,7 +49,7 @@ const Nav = (props: { user: User }) => {
       <header className='d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom'>
         <ul className='nav col-12 col-md-auto mb-2 justify-content-center mb-md-0'>
           <li>
-            <a href='#' className='nav-link px-2 link-secondary'>
+            <a href='/' className='nav-link px-2 link-secondary'>
               Frontend
             </a>
           </li>
